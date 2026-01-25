@@ -15,7 +15,9 @@ let state = {
   prefRapide: false,
   excludedIngredients: [],
   generatedMenu: [],
-  shoppingList: {}
+  shoppingList: {},
+  // Favoris
+  favoriteRecipes: [] // Array d'IDs de recettes favorites
 };
 
 // Jours de la semaine
@@ -38,7 +40,9 @@ const RAYON_ICONS = {
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
   loadPreferences();
+  loadFavoritesFromStorage();
   renderIngredientsList();
+  renderFavoritesSection();
   setupEventListeners();
 });
 
@@ -209,6 +213,10 @@ function generateMenu() {
   const usedPDIds = [];
   const usedPlatIds = [];
 
+  // Préparer les slots pour les favoris
+  // Structure: { dayIndex, mealType: 'petit-dejeuner' | 'dejeuner' | 'diner', recipe }
+  const favoriteSlots = planFavoriteSlots(petitsDejeuners, plats);
+
   for (let i = 0; i < state.nbJours; i++) {
     const dayMenu = {
       jour: JOURS[i % 7],
@@ -217,7 +225,14 @@ function generateMenu() {
     };
 
     if (state.petitDejeuner) {
-      const recipe = pickRandomRecipe(petitsDejeuners, usedPDIds);
+      // Vérifier si un favori est prévu pour ce slot
+      const favoriteSlot = favoriteSlots.find(s => s.dayIndex === i && s.mealType === 'petit-dejeuner');
+      let recipe;
+      if (favoriteSlot) {
+        recipe = favoriteSlot.recipe;
+      } else {
+        recipe = pickRandomRecipe(petitsDejeuners, usedPDIds);
+      }
       dayMenu.repas.push({
         type: 'Petit-déjeuner',
         typeKey: 'petit-dejeuner',
@@ -227,7 +242,13 @@ function generateMenu() {
     }
 
     if (state.dejeuner) {
-      const recipe = pickRandomRecipe(plats, usedPlatIds);
+      const favoriteSlot = favoriteSlots.find(s => s.dayIndex === i && s.mealType === 'dejeuner');
+      let recipe;
+      if (favoriteSlot) {
+        recipe = favoriteSlot.recipe;
+      } else {
+        recipe = pickRandomRecipe(plats, usedPlatIds);
+      }
       dayMenu.repas.push({
         type: 'Déjeuner',
         typeKey: 'dejeuner',
@@ -237,7 +258,13 @@ function generateMenu() {
     }
 
     if (state.diner) {
-      const recipe = pickRandomRecipe(plats, usedPlatIds);
+      const favoriteSlot = favoriteSlots.find(s => s.dayIndex === i && s.mealType === 'diner');
+      let recipe;
+      if (favoriteSlot) {
+        recipe = favoriteSlot.recipe;
+      } else {
+        recipe = pickRandomRecipe(plats, usedPlatIds);
+      }
       dayMenu.repas.push({
         type: 'Dîner',
         typeKey: 'diner',
@@ -251,7 +278,106 @@ function generateMenu() {
 
   renderMenu();
   goToStep(2);
-  showToast('Menu généré avec succès !');
+  
+  const favoritesPlaced = favoriteSlots.length;
+  if (favoritesPlaced > 0) {
+    showToast(`Menu généré avec ${favoritesPlaced} favori${favoritesPlaced > 1 ? 's' : ''} !`);
+  } else {
+    showToast('Menu généré avec succès !');
+  }
+}
+
+// Planifier les slots pour les favoris (1 par semaine de 7 jours)
+function planFavoriteSlots(petitsDejeuners, plats) {
+  const slots = [];
+  if (state.favoriteRecipes.length === 0) return slots;
+
+  // Séparer les favoris par catégorie
+  const favoritePD = [];
+  const favoritePlats = [];
+  
+  state.favoriteRecipes.forEach(recipeId => {
+    const recipe = getRecipeById(recipeId);
+    if (!recipe) return;
+    
+    // Vérifier que la recette est disponible (pas d'ingrédient exclu, budget ok)
+    if (recipe.categorie === 'petit-dejeuner') {
+      if (state.petitDejeuner && petitsDejeuners.some(r => r.id === recipeId)) {
+        favoritePD.push(recipe);
+      }
+    } else if (recipe.categorie === 'plat') {
+      if ((state.dejeuner || state.diner) && plats.some(r => r.id === recipeId)) {
+        favoritePlats.push(recipe);
+      }
+    }
+  });
+
+  // Calculer combien de semaines on a
+  const nbWeeks = Math.ceil(state.nbJours / 7);
+  
+  // Pour chaque semaine, placer les favoris
+  for (let week = 0; week < nbWeeks; week++) {
+    const weekStart = week * 7;
+    const weekEnd = Math.min(weekStart + 7, state.nbJours);
+    const daysInWeek = weekEnd - weekStart;
+    
+    // Collecter les jours disponibles pour cette semaine
+    let availableDays = [];
+    for (let d = weekStart; d < weekEnd; d++) {
+      availableDays.push(d);
+    }
+    
+    // Mélanger les jours disponibles
+    availableDays = shuffleArray([...availableDays]);
+    
+    // Placer les favoris petits-déjeuners
+    if (state.petitDejeuner) {
+      favoritePD.forEach(recipe => {
+        if (availableDays.length > 0) {
+          // Trouver un jour où on n'a pas déjà placé un favori PD
+          const dayIndex = availableDays.find(d => !slots.some(s => s.dayIndex === d && s.mealType === 'petit-dejeuner'));
+          if (dayIndex !== undefined) {
+            slots.push({ dayIndex, mealType: 'petit-dejeuner', recipe });
+          }
+        }
+      });
+    }
+    
+    // Placer les favoris plats (déjeuner ou dîner)
+    favoritePlats.forEach(recipe => {
+      if (availableDays.length > 0) {
+        // Trouver un jour disponible
+        for (const dayIndex of availableDays) {
+          // Vérifier si on peut placer en déjeuner ou dîner
+          const canDejeuner = state.dejeuner && !slots.some(s => s.dayIndex === dayIndex && s.mealType === 'dejeuner');
+          const canDiner = state.diner && !slots.some(s => s.dayIndex === dayIndex && s.mealType === 'diner');
+          
+          if (canDejeuner || canDiner) {
+            // Choisir aléatoirement entre déjeuner et dîner si les deux sont possibles
+            let mealType;
+            if (canDejeuner && canDiner) {
+              mealType = Math.random() < 0.5 ? 'dejeuner' : 'diner';
+            } else {
+              mealType = canDejeuner ? 'dejeuner' : 'diner';
+            }
+            slots.push({ dayIndex, mealType, recipe });
+            break;
+          }
+        }
+      }
+    });
+  }
+  
+  return slots;
+}
+
+// Fonction utilitaire pour mélanger un tableau
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 function getAvailableRecipes(categorie) {
@@ -399,9 +525,16 @@ function renderMenu() {
     const mealsHtml = day.repas.map((meal, mealIndex) => {
       const mealPrice = calculerPrixRecette(meal.recipe, state.nbPersonnes);
       dayTotal += mealPrice;
+      const isFav = isFavorite(meal.recipe.id);
+      const favClass = isFav ? 'active' : '';
+      const favIcon = isFav ? '&#9733;' : '&#9734;'; // ★ ou ☆
+      const cardClass = isFav ? 'meal-card is-favorite' : 'meal-card';
       return `
-        <div class="meal-card">
+        <div class="${cardClass}">
           <div class="meal-actions">
+            <button class="btn-favorite ${favClass}" onclick="toggleFavorite(${meal.recipe.id})" title="${isFav ? 'Retirer des favoris' : 'Ajouter aux favoris'}">
+              ${favIcon}
+            </button>
             <button class="btn-refresh" onclick="regenerateMeal(${dayIndex}, ${mealIndex})" title="Changer de recette">
               ↻
             </button>
@@ -757,10 +890,12 @@ function savePreferences() {
     prefLowSugar: state.prefLowSugar,
     prefCopieux: state.prefCopieux,
     prefRapide: state.prefRapide,
-    excludedIngredients: state.excludedIngredients
+    excludedIngredients: state.excludedIngredients,
+    favoriteRecipes: state.favoriteRecipes
   };
 
   localStorage.setItem('menuGeneratorPrefs', JSON.stringify(prefs));
+  saveFavoritesToStorage();
   showToast('Préférences sauvegardées !');
 }
 
@@ -769,7 +904,12 @@ function loadPreferences() {
   if (saved) {
     try {
       const prefs = JSON.parse(saved);
+      // Charger les favoris séparément pour éviter d'écraser avec une valeur undefined
+      const savedFavorites = prefs.favoriteRecipes || [];
+      delete prefs.favoriteRecipes;
+      
       state = { ...state, ...prefs };
+      state.favoriteRecipes = savedFavorites;
 
       // Appliquer au formulaire
       document.getElementById('nbPersonnes').value = state.nbPersonnes;
@@ -900,6 +1040,104 @@ function filterByDay(day) {
 
 function printPreparation() {
   window.print();
+}
+
+// ========================================
+// Gestion des favoris
+// ========================================
+function toggleFavorite(recipeId) {
+  const index = state.favoriteRecipes.indexOf(recipeId);
+  if (index > -1) {
+    state.favoriteRecipes.splice(index, 1);
+    showToast('Recette retirée des favoris');
+  } else {
+    state.favoriteRecipes.push(recipeId);
+    showToast('Recette ajoutée aux favoris !');
+  }
+  
+  // Mettre à jour l'affichage
+  renderMenu();
+  renderFavoritesSection();
+  
+  // Sauvegarder automatiquement
+  saveFavoritesToStorage();
+}
+
+function isFavorite(recipeId) {
+  return state.favoriteRecipes.includes(recipeId);
+}
+
+function getRecipeById(recipeId) {
+  return RECIPES.find(r => r.id === recipeId);
+}
+
+function renderFavoritesSection() {
+  const container = document.getElementById('favoritesList');
+  if (!container) return;
+  
+  if (state.favoriteRecipes.length === 0) {
+    container.innerHTML = `
+      <div class="favorites-empty">
+        <span class="favorites-empty-icon">&#9734;</span>
+        <p>Aucune recette favorite</p>
+        <small>Générez un menu et cliquez sur l'étoile pour ajouter des favoris</small>
+      </div>
+    `;
+    return;
+  }
+  
+  let html = '<div class="favorites-grid">';
+  state.favoriteRecipes.forEach(recipeId => {
+    const recipe = getRecipeById(recipeId);
+    if (recipe) {
+      const categoryLabel = recipe.categorie === 'petit-dejeuner' ? 'Petit-déj' : 'Plat';
+      html += `
+        <div class="favorite-item">
+          <div class="favorite-info">
+            <span class="favorite-category">${categoryLabel}</span>
+            <span class="favorite-name">${recipe.nom}</span>
+          </div>
+          <button class="btn-remove-favorite" onclick="removeFavorite(${recipeId})" title="Retirer des favoris">
+            &times;
+          </button>
+        </div>
+      `;
+    }
+  });
+  html += '</div>';
+  
+  // Ajouter le compteur
+  const count = state.favoriteRecipes.length;
+  html = `<div class="favorites-count">${count} favori${count > 1 ? 's' : ''} - apparaîtront 1x par semaine</div>` + html;
+  
+  container.innerHTML = html;
+}
+
+function removeFavorite(recipeId) {
+  const index = state.favoriteRecipes.indexOf(recipeId);
+  if (index > -1) {
+    state.favoriteRecipes.splice(index, 1);
+    renderFavoritesSection();
+    renderMenu();
+    saveFavoritesToStorage();
+    showToast('Favori retiré');
+  }
+}
+
+function saveFavoritesToStorage() {
+  localStorage.setItem('menuGeneratorFavorites', JSON.stringify(state.favoriteRecipes));
+}
+
+function loadFavoritesFromStorage() {
+  const saved = localStorage.getItem('menuGeneratorFavorites');
+  if (saved) {
+    try {
+      state.favoriteRecipes = JSON.parse(saved);
+    } catch (e) {
+      console.error('Erreur chargement favoris:', e);
+      state.favoriteRecipes = [];
+    }
+  }
 }
 
 // Activer la navigation par les boutons d'étape

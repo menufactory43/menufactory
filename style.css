@@ -1321,7 +1321,7 @@ header h1 {
     background: white;
   }
 
-  header, .steps, .actions, .btn-refresh, .item-checkbox, .day-filter {
+  header, .steps, .actions, .btn-refresh, .item-checkbox, .day-filter, .btn-favorite {
     display: none !important;
   }
 
@@ -1351,5 +1351,172 @@ header h1 {
 
   .prep-day-section:first-child {
     break-before: auto;
+  }
+}
+
+/* ========================================
+   Favoris
+   ======================================== */
+
+/* Bouton étoile favori */
+.btn-favorite {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--bg-card);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+}
+
+.btn-favorite:hover {
+  background: #fff8e1;
+  color: #ffc107;
+  transform: scale(1.1);
+}
+
+.btn-favorite.active {
+  background: #fff8e1;
+  color: #ffc107;
+}
+
+/* Actions du meal-card avec étoile */
+.meal-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+/* Carte de repas favorite */
+.meal-card.is-favorite {
+  border: 2px solid #ffc107;
+  background: linear-gradient(135deg, var(--bg) 0%, #fffde7 100%);
+}
+
+.meal-card.is-favorite::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #ffc107;
+  border-radius: 4px 0 0 4px;
+}
+
+/* Section favoris dans la config */
+.favorites-list {
+  min-height: 60px;
+}
+
+.favorites-empty {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--text-light);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border: 2px dashed var(--border);
+}
+
+.favorites-empty-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 10px;
+  color: var(--border);
+}
+
+.favorites-empty p {
+  margin: 0 0 5px 0;
+  font-weight: 500;
+}
+
+.favorites-empty small {
+  font-size: 0.85rem;
+}
+
+.favorites-count {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  background: var(--secondary);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.favorites-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.favorite-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid #ffc107;
+  transition: var(--transition);
+}
+
+.favorite-item:hover {
+  box-shadow: var(--shadow);
+}
+
+.favorite-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.favorite-category {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-light);
+  letter-spacing: 0.5px;
+}
+
+.favorite-name {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.btn-remove-favorite {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--text-light);
+  font-size: 1.3rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-remove-favorite:hover {
+  background: var(--danger);
+  color: white;
+}
+
+/* Responsive favoris */
+@media (max-width: 480px) {
+  .favorites-grid {
+    gap: 8px;
+  }
+
+  .favorite-item {
+    padding: 10px 12px;
   }
 }
