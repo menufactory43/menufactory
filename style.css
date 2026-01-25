@@ -1522,36 +1522,34 @@ header h1 {
 }
 
 /* ========================================
-   Widget Bring!
+   Bouton Bring!
    ======================================== */
-.bring-widget-wrapper {
+.btn-bring {
+  background: #4CAF50;
+  color: white;
+  border: none;
   display: inline-flex;
   align-items: center;
-  margin-left: 8px;
+  gap: 6px;
 }
 
-/* Assurer que le widget Bring! s'affiche correctement */
-.bring-widget-wrapper > div {
-  display: block !important;
+.btn-bring:hover {
+  background: #388E3C;
+  color: white;
+  border: none;
 }
 
-/* Style pour le conteneur du widget sur mobile */
-@media (max-width: 768px) {
-  .header-actions {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .bring-widget-wrapper {
-    margin-left: 0;
-    margin-top: 8px;
-    width: 100%;
-    justify-content: center;
-  }
+.bring-icon {
+  background: white;
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 0.7rem;
+  padding: 2px 4px;
+  border-radius: 3px;
 }
 
 @media print {
-  .bring-widget-wrapper {
+  .btn-bring {
     display: none !important;
   }
 }

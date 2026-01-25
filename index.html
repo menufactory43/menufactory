@@ -14,9 +14,6 @@
   
   <title>Planificateur de Menus Familiaux</title>
   <link rel="stylesheet" href="style.css">
-  
-  <!-- Bring! Widget -->
-  <script async src="//platform.getbring.com/widgets/import.js"></script>
 </head>
 <body>
   <div class="container">
@@ -260,16 +257,9 @@
             <button class="btn btn-secondary btn-small" onclick="copyList()">
               Copier
             </button>
-            <div id="bringWidgetContainer" class="bring-widget-wrapper">
-              <div id="bringWidget" 
-                   data-bring-import 
-                   data-bring-language="fr" 
-                   data-bring-theme="light"
-                   data-bring-base-quantity="1"
-                   style="display:none">
-                <a href="https://www.getbring.com">Bring!</a>
-              </div>
-            </div>
+            <button class="btn btn-bring btn-small" onclick="copyForBring()">
+              <span class="bring-icon">B!</span> Bring!
+            </button>
           </div>
         </div>
 
