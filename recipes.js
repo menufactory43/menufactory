@@ -3231,6 +3231,34 @@ const RECIPES = [
       "Garnir les tortillas de boeuf, légumes et fromage.",
       "Ajouter la guacamole et rouler."
     ]
+  },
+
+  // Burger maison
+  {
+    id: 131,
+    nom: "Burger maison",
+    categorie: "plat",
+    budget: 2,
+    tempsPreparation: 30,
+    tags: ["copieux", "rapide"],
+    ingredients: [
+      { nom: "Pain à burger", quantite: 2, unite: "pièce", rayon: "boulangerie" },
+      { nom: "Steak haché", quantite: 150, unite: "g", rayon: "viandes" },
+      { nom: "Fromage râpé", quantite: 40, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Salade verte", quantite: 50, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Tomates", quantite: 100, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Oignons", quantite: 50, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Cornichons", quantite: 50, unite: "g", rayon: "epicerie" },
+      { nom: "Mayonnaise", quantite: 30, unite: "g", rayon: "epicerie" }
+    ],
+    etapes: [
+      "Faire cuire le steak haché à la poêle ou au grill selon ton goût.",
+      "Griller légèrement les pains à burger.",
+      "Couper les tomates en rondelles et émincer les oignons.",
+      "Sur la base du burger, étaler la mayonnaise.",
+      "Ajouter la salade, le steak, le fromage, les tomates, oignons et cornichons.",
+      "Terminer avec le chapeau du burger."
+    ]
   }
 ];
 
