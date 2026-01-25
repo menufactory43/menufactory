@@ -793,12 +793,68 @@ function renderShoppingList() {
     `;
     container.appendChild(section);
   });
+
+  // Injecter les données pour Bring! et initialiser le widget
+  injectSchemaOrgData();
+  initBringWidget();
 }
 
 function toggleItem(nom) {
   if (state.shoppingList[nom]) {
     state.shoppingList[nom].checked = !state.shoppingList[nom].checked;
     renderShoppingList();
+  }
+}
+
+// ========================================
+// Intégration Bring!
+// ========================================
+function injectSchemaOrgData() {
+  // Supprimer l'ancien script s'il existe
+  const existingScript = document.getElementById('schemaOrgRecipe');
+  if (existingScript) existingScript.remove();
+
+  // Créer le tableau d'ingrédients au format texte
+  const ingredients = Object.values(state.shoppingList).map(item => {
+    const qty = formatQuantity(item.quantite, item.unite);
+    return `${qty} ${item.nom}`;
+  });
+
+  // Créer les données schema.org
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": `Liste de courses - Menu ${state.nbJours} jours`,
+    "recipeYield": `${state.nbPersonnes} personnes`,
+    "recipeIngredient": ingredients
+  };
+
+  // Injecter dans le DOM
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.id = 'schemaOrgRecipe';
+  script.textContent = JSON.stringify(schemaData);
+  document.head.appendChild(script);
+}
+
+function initBringWidget() {
+  // Attendre que le script Bring! soit chargé
+  if (window.bringwidgets && window.bringwidgets.import) {
+    const widgetContainer = document.getElementById('bringWidget');
+    if (widgetContainer) {
+      // Mettre à jour les quantités (on utilise 1 car les quantités sont déjà calculées)
+      window.bringwidgets.import.setBaseQuantity(1);
+      window.bringwidgets.import.setRequestedQuantity(1);
+      // Re-render le widget
+      window.bringwidgets.import.render(widgetContainer, {
+        url: window.location.href,
+        language: 'fr',
+        theme: 'light'
+      });
+    }
+  } else {
+    // Si le script n'est pas encore chargé, réessayer après 500ms
+    setTimeout(initBringWidget, 500);
   }
 }
 

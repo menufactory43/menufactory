@@ -1520,3 +1520,38 @@ header h1 {
     padding: 10px 12px;
   }
 }
+
+/* ========================================
+   Widget Bring!
+   ======================================== */
+.bring-widget-wrapper {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+/* Assurer que le widget Bring! s'affiche correctement */
+.bring-widget-wrapper > div {
+  display: block !important;
+}
+
+/* Style pour le conteneur du widget sur mobile */
+@media (max-width: 768px) {
+  .header-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .bring-widget-wrapper {
+    margin-left: 0;
+    margin-top: 8px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media print {
+  .bring-widget-wrapper {
+    display: none !important;
+  }
+}
