@@ -3088,6 +3088,149 @@ const RECIPES = [
       "Verser dans une poêle et cuire 5 min de chaque côté.",
       "Servir en parts avec une salade verte."
     ]
+  },
+
+  // =====================
+  // RECETTES INTERNATIONALES
+  // =====================
+
+  // Pad thaï au poulet
+  {
+    id: 126,
+    nom: "Pad thaï au poulet",
+    categorie: "plat",
+    budget: 2,
+    tempsPreparation: 25,
+    tags: ["rapide", "copieux"],
+    ingredients: [
+      { nom: "Nouilles de riz", quantite: 100, unite: "g", rayon: "epicerie" },
+      { nom: "Cuisses de poulet", quantite: 150, unite: "g", rayon: "viandes" },
+      { nom: "Oeufs", quantite: 1, unite: "pièce", rayon: "produits-laitiers" },
+      { nom: "Sauce soja", quantite: 20, unite: "ml", rayon: "epicerie" },
+      { nom: "Sauce nuoc mam", quantite: 15, unite: "ml", rayon: "epicerie" },
+      { nom: "Cacahuètes", quantite: 30, unite: "g", rayon: "epicerie" },
+      { nom: "Poivrons", quantite: 75, unite: "g", rayon: "fruits-legumes" }
+    ],
+    etapes: [
+      "Faire cuire les nouilles selon les instructions.",
+      "Couper le poulet en lanières fines.",
+      "Faire chauffer un peu d'huile dans une poêle ou wok.",
+      "Faire cuire le poulet 5-6 min jusqu'à ce qu'il soit doré.",
+      "Ajouter les poivrons coupés et cuire 2-3 min.",
+      "Ajouter les nouilles égouttées, la sauce soja et la sauce nuoc mam.",
+      "Casser l'oeuf au centre et le mélanger rapidement.",
+      "Parsemer de cacahuètes concassées et servir."
+    ]
+  },
+
+  // Burrito mexicain
+  {
+    id: 127,
+    nom: "Burrito mexicain",
+    categorie: "plat",
+    budget: 2,
+    tempsPreparation: 20,
+    tags: ["rapide", "copieux"],
+    ingredients: [
+      { nom: "Tortillas de blé", quantite: 2, unite: "pièce", rayon: "epicerie" },
+      { nom: "Riz basmati", quantite: 80, unite: "g", rayon: "epicerie" },
+      { nom: "Steak haché", quantite: 150, unite: "g", rayon: "viandes" },
+      { nom: "Haricots rouges", quantite: 100, unite: "g", rayon: "epicerie" },
+      { nom: "Fromage râpé", quantite: 40, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Avocat", quantite: 0.5, unite: "pièce", rayon: "fruits-legumes" },
+      { nom: "Salsa", quantite: 40, unite: "g", rayon: "epicerie" }
+    ],
+    etapes: [
+      "Cuire le riz selon les instructions.",
+      "Faire cuire le steak haché dans une poêle.",
+      "Chauffer légèrement les tortillas à la poêle.",
+      "Étaler la salsa sur les tortillas.",
+      "Garnir de riz, steak haché, haricots rouges, fromage râpé.",
+      "Ajouter l'avocat en lamelles.",
+      "Rouler en serrant les bords."
+    ]
+  },
+
+  // Curry de lentilles indien
+  {
+    id: 128,
+    nom: "Curry de lentilles indien",
+    categorie: "plat",
+    budget: 1,
+    tempsPreparation: 30,
+    tags: ["vegetarien", "copieux"],
+    ingredients: [
+      { nom: "Lentilles corail", quantite: 100, unite: "g", rayon: "epicerie" },
+      { nom: "Lait de coco", quantite: 200, unite: "ml", rayon: "epicerie" },
+      { nom: "Oignons", quantite: 75, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Curry", quantite: 8, unite: "g", rayon: "epicerie" },
+      { nom: "Gingembre", quantite: 5, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Ail", quantite: 2, unite: "gousses", rayon: "fruits-legumes" },
+      { nom: "Riz basmati", quantite: 80, unite: "g", rayon: "epicerie" }
+    ],
+    etapes: [
+      "Faire cuire le riz selon les instructions.",
+      "Faire revenir l'oignon émincé dans une cocotte.",
+      "Ajouter l'ail et le gingembre écrasés, cuire 1 min.",
+      "Ajouter les lentilles corail, le curry et le lait de coco.",
+      "Assaisonner, couvrir et laisser mijoter 20-25 min.",
+      "Servir avec le riz et accompagner de naan ou de riz."
+    ]
+  },
+
+  // Risotto milanais
+  {
+    id: 129,
+    nom: "Risotto milanais",
+    categorie: "plat",
+    budget: 2,
+    tempsPreparation: 40,
+    tags: ["copieux"],
+    ingredients: [
+      { nom: "Riz arborio", quantite: 80, unite: "g", rayon: "epicerie" },
+      { nom: "Bouillon de légumes", quantite: 500, unite: "ml", rayon: "epicerie" },
+      { nom: "Oignons", quantite: 50, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Vin blanc", quantite: 50, unite: "ml", rayon: "epicerie" },
+      { nom: "Parmesan", quantite: 30, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Beurre", quantite: 20, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Safran", quantite: 0.1, unite: "g", rayon: "epicerie" }
+    ],
+    etapes: [
+      "Faire chauffer le bouillon dans une casserole séparée.",
+      "Faire suer l'oignon émincé dans une cocotte avec un peu d'huile.",
+      "Ajouter le riz et le faire nacrer 2-3 min.",
+      "Déglacer avec le vin blanc et laisser évaporer.",
+      "Ajouter une louche de bouillon chaud, remuer constamment.",
+      "Répéter l'opération jusqu'à absorption complète du bouillon (environ 15-20 min).",
+      "Hors du feu, ajouter le beurre, le parmesan râpé et le safran.",
+      "Laisser reposer 2-3 min avant de servir."
+    ]
+  },
+
+  // Tacos au boeuf
+  {
+    id: 130,
+    nom: "Tacos au boeuf",
+    categorie: "plat",
+    budget: 2,
+    tempsPreparation: 20,
+    tags: ["rapide", "copieux"],
+    ingredients: [
+      { nom: "Tortillas de maïs", quantite: 4, unite: "pièce", rayon: "epicerie" },
+      { nom: "Boeuf haché", quantite: 150, unite: "g", rayon: "viandes" },
+      { nom: "Fromage râpé", quantite: 40, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Laitue", quantite: 50, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Tomates", quantite: 100, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Oignons", quantite: 50, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Guacamole", quantite: 40, unite: "g", rayon: "epicerie" }
+    ],
+    etapes: [
+      "Faire chauffer les tortillas au micro-ondes ou à la poêle.",
+      "Faire cuire le boeuf haché avec un peu d'épices mexicaines.",
+      "Couper les tomates, oignons et laitue en petits morceaux.",
+      "Garnir les tortillas de boeuf, légumes et fromage.",
+      "Ajouter la guacamole et rouler."
+    ]
   }
 ];
 
