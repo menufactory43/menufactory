@@ -154,6 +154,11 @@ function toggleIngredient(ingredient) {
     state.excludedIngredients.push(ingredient);
   }
   renderIngredientsList();
+  
+  // Si un menu a déjà été généré, le régénérer avec les nouveaux critères
+  if (state.generatedMenu.length > 0) {
+    generateMenu();
+  }
 }
 
 function filterIngredients(search) {
