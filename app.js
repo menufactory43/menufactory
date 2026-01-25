@@ -13,7 +13,7 @@ let state = {
   prefLowSugar: false,
   prefCopieux: false,
   prefRapide: false,
-  excludedIngredients: [],
+  excludedIngredients: ["Sardines fraîches"],
   generatedMenu: [],
   shoppingList: {},
   // Favoris
