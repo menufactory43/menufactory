@@ -532,7 +532,7 @@ function renderMenu() {
       dayTotal += mealPrice;
       const isFav = isFavorite(meal.recipe.id);
       const favClass = isFav ? 'active' : '';
-      const favIcon = isFav ? '&#9733;' : '&#9734;'; // ★ ou ☆
+      const favIcon = isFav ? '❤️' : '🤍'; // Cœur plein ou cœur vide
       const cardClass = isFav ? 'meal-card is-favorite' : 'meal-card';
       return `
         <div class="${cardClass}">
@@ -1110,9 +1110,9 @@ function renderFavoritesSection() {
   if (state.favoriteRecipes.length === 0) {
     container.innerHTML = `
       <div class="favorites-empty">
-        <span class="favorites-empty-icon">&#9734;</span>
+        <span class="favorites-empty-icon">🤍</span>
         <p>Aucune recette favorite</p>
-        <small>Générez un menu et cliquez sur l'étoile pour ajouter des favoris</small>
+        <small>Générez un menu et cliquez sur le cœur pour ajouter des favoris</small>
       </div>
     `;
     return;
