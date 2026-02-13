@@ -1157,6 +1157,28 @@ const RECIPES = [
     ]
   },
   {
+    id: 33,
+    nom: "Sardines grillées",
+    categorie: "plat",
+    budget: 1,
+    tempsPreparation: 20,
+    tags: ["rapide", "leger"],
+    ingredients: [
+      { nom: "Sardines fraîches", quantite: 200, unite: "g", rayon: "poissonnerie" },
+      { nom: "Citron", quantite: 0.5, unite: "pièce", rayon: "fruits-legumes" },
+      { nom: "Huile d'olive", quantite: 15, unite: "ml", rayon: "epicerie" },
+      { nom: "Pain", quantite: 100, unite: "g", rayon: "boulangerie" },
+      { nom: "Tomates", quantite: 100, unite: "g", rayon: "fruits-legumes" }
+    ],
+    etapes: [
+      "Vider et écailler les sardines si nécessaire.",
+      "Les badigeonner d'huile d'olive, saler et poivrer.",
+      "Faire griller sous le gril du four ou à la plancha 3-4 min de chaque côté.",
+      "Couper les tomates en tranches, assaisonner.",
+      "Servir les sardines avec un filet de citron, les tomates et du pain."
+    ]
+  },
+  {
     id: 34,
     nom: "Brandade de morue",
     categorie: "plat",
@@ -3238,122 +3260,6 @@ const RECIPES = [
       "Terminer avec le chapeau du burger."
     ]
   }
-
-  // =====================
-  // DESSERTS (5)
-  // =====================
-  {
-    id: 95,
-    nom: "Crème caramel",
-    categorie: "dessert",
-    budget: 1,
-    tempsPreparation: 45,
-    tags: ["sucre", "rapide"],
-    ingredients: [
-      { nom: "Lait", quantite: 250, unite: "ml", rayon: "produits-laitiers" },
-      { nom: "Oeufs", quantite: 2, unite: "pieces", rayon: "produits-laitiers" },
-      { nom: "Sucre", quantite: 50, unite: "g", rayon: "epicerie" },
-      { nom: "Sucre vanillé", quantite: 1, unite: "sachet", rayon: "epicerie" }
-    ],
-    etapes: [
-      "Préchauffer le four à 160°C.",
-      "Faire un caramel avec 20g de sucre et un peu d'eau dans des ramequins.",
-      "Dans un bol, battre les oeufs avec le reste de sucre et le sucre vanillé.",
-      "Faire chauffer le lait presque à ébullition et l'ajouter aux oeufs en fouettant.",
-      "Verser la préparation dans les ramequins et cuire au bain-marie 30 minutes.",
-      "Laisser refroidir et réserver au frais avant de démouler."
-    ]
-  },
-  {
-    id: 96,
-    nom: "Compote de pommes maison",
-    categorie: "dessert",
-    budget: 1,
-    tempsPreparation: 25,
-    tags: ["sucre", "leger", "rapide"],
-    ingredients: [
-      { nom: "Pommes", quantite: 300, unite: "g", rayon: "fruits-legumes" },
-      { nom: "Eau", quantite: 50, unite: "ml", rayon: "epicerie" },
-      { nom: "Sucre", quantite: 20, unite: "g", rayon: "epicerie" },
-      { nom: "Cannelle", quantite: 1, unite: "g", rayon: "epicerie" }
-    ],
-    etapes: [
-      "Peler et couper les pommes en morceaux.",
-      "Mettre les pommes dans une casserole avec l'eau et le sucre.",
-      "Ajouter la cannelle et cuire 20 minutes à feu doux.",
-      "Mixer partiellement ou laisser en morceaux selon la texture souhaitée.",
-      "Laisser refroidir avant de servir."
-    ]
-  },
-  {
-    id: 97,
-    nom: "Yaourt aux fruits frais",
-    categorie: "dessert",
-    budget: 1,
-    tempsPreparation: 10,
-    tags: ["sucre", "leger", "rapide"],
-    ingredients: [
-      { nom: "Yaourt nature", quantite: 125, unite: "g", rayon: "produits-laitiers" },
-      { nom: "Fruits de saison", quantite: 100, unite: "g", rayon: "fruits-legumes" },
-      { nom: "Miel", quantite: 10, unite: "g", rayon: "epicerie" },
-      { nom: "Muesli", quantite: 20, unite: "g", rayon: "epicerie" }
-    ],
-    etapes: [
-      "Laver et couper les fruits en petits morceaux.",
-      "Mettre le yaourt dans un bol ou un verre.",
-      "Ajouter les fruits coupés par-dessus.",
-      "Arroser de miel et saupoudrer de muesli.",
-      "Servir frais."
-    ]
-  },
-  {
-    id: 98,
-    nom: "Pommes au four",
-    categorie: "dessert",
-    budget: 1,
-    tempsPreparation: 40,
-    tags: ["sucre", "leger"],
-    ingredients: [
-      { nom: "Pommes", quantite: 200, unite: "g", rayon: "fruits-legumes" },
-      { nom: "Beurre", quantite: 10, unite: "g", rayon: "produits-laitiers" },
-      { nom: "Sucre", quantite: 15, unite: "g", rayon: "epicerie" },
-      { nom: "Cannelle", quantite: 1, unite: "g", rayon: "epicerie" }
-    ],
-    etapes: [
-      "Préchauffer le four à 180°C.",
-      "Couper les pommes en quartiers et ôter les pépins.",
-      "Disposer les quartiers dans un plat à four.",
-      "Parsemer de sucre, de cannelle et déposer des morceaux de beurre.",
-      "Cuire 30 minutes jusqu'à ce que les pommes soient tendres.",
-      "Servir tiède ou froid."
-    ]
-  },
-  {
-    id: 99,
-    nom: "Flan pâtissier",
-    categorie: "dessert",
-    budget: 2,
-    tempsPreparation: 50,
-    tags: ["sucre", "copieux"],
-    ingredients: [
-      { nom: "Pâte brisée", quantite: 1, unite: "pâte", rayon: "epicerie" },
-      { nom: "Lait", quantite: 300, unite: "ml", rayon: "produits-laitiers" },
-      { nom: "Oeufs", quantite: 2, unite: "pieces", rayon: "produits-laitiers" },
-      { nom: "Sucre", quantite: 60, unite: "g", rayon: "epicerie" },
-      { nom: "Maïzena", quantite: 20, unite: "g", rayon: "epicerie" }
-    ],
-    etapes: [
-      "Préchauffer le four à 180°C.",
-      "Foncer un moule avec la pâte brisée et piquer le fond.",
-      "Faire cuire à blanc 10 minutes avec des billes de cuisson.",
-      "Dans une casserole, chauffer le lait avec la moitié du sucre.",
-      "Dans un bol, battre les oeufs avec le reste du sucre et la maïzena.",
-      "Verser le lait chaud sur les oeufs en fouettant, reverser dans la casserole.",
-      "Faire épaissir 2-3 minutes à feu doux sans bouillir.",
-      "Verser la crème dans le fond de tarte précuit et enfourner 25 minutes."
-    ]
-  }
-
 ];
 
 // Liste de tous les ingrédients possibles (pour les exclusions)
@@ -3469,6 +3375,7 @@ const PRIX_INGREDIENTS = {
   // Poissonnerie
   "Pavé de saumon": { prixBase: 20.00, uniteBase: "kg", qteParUnite: 1000, uniteRecette: "g" },
   "Filet de cabillaud": { prixBase: 16.00, uniteBase: "kg", qteParUnite: 1000, uniteRecette: "g" },
+  "Sardines fraîches": { prixBase: 8.00, uniteBase: "kg", qteParUnite: 1000, uniteRecette: "g" },
   "Morue dessalée": { prixBase: 15.00, uniteBase: "kg", qteParUnite: 1000, uniteRecette: "g" },
   "Crevettes": { prixBase: 18.00, uniteBase: "kg", qteParUnite: 1000, uniteRecette: "g" },
   "Filet de truite": { prixBase: 14.00, uniteBase: "kg", qteParUnite: 1000, uniteRecette: "g" },
