@@ -3237,7 +3237,7 @@ const RECIPES = [
       "Ajouter la salade, le steak, le fromage, les tomates, oignons et cornichons.",
       "Terminer avec le chapeau du burger."
     ]
-  }
+  },
 
   // =====================
   // DESSERTS (5)

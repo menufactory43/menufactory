@@ -14,7 +14,7 @@ let state = {
   prefLowSugar: false,
   prefCopieux: false,
   prefRapide: false,
-  excludedIngredients: ["Sardines fraîches"],
+  excludedIngredients: [],
   generatedMenu: [],
   shoppingList: {},
   // Favoris
@@ -1036,10 +1036,6 @@ function loadPreferences() {
       
       const prefRapide = document.getElementById('prefRapide');
       if (prefRapide) prefRapide.checked = state.prefRapide;
-      
-      // Appliquer l'état du dessert
-      const dessertCheckbox = document.getElementById('dessert');
-      if (dessertCheckbox) dessertCheckbox.checked = state.dessert;
       
       // Appliquer l'état du dessert
       const dessertCheckbox = document.getElementById('dessert');
