@@ -997,13 +997,22 @@ function exportToObsidian() {
   md += `---\n_Généré le ${displayDate} par Menu Planner_\n`;
 
   const fileName = `Liste de courses ${dateStr}.md`;
-  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-  const file = new File([blob], fileName, { type: 'text/markdown' });
+  const blob = new Blob([md], { type: 'text/plain;charset=utf-8' });
+  const file = new File([blob], fileName, { type: 'text/plain' });
 
-  if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+  if (navigator.share) {
     navigator.share({ files: [file], title: fileName })
-      .then(() => showToast('Fichier partagé !'))
-      .catch(err => { if (err.name !== 'AbortError') showToast('Erreur lors du partage'); });
+      .catch(err => {
+        if (err.name === 'AbortError') return;
+        // Fallback si le partage de fichiers n'est pas supporté
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('Export Obsidian téléchargé !');
+      });
   } else {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
