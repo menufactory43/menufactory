@@ -3352,6 +3352,448 @@ const RECIPES = [
       "Faire épaissir 2-3 minutes à feu doux sans bouillir.",
       "Verser la crème dans le fond de tarte précuit et enfourner 25 minutes."
     ]
+  },
+
+  // =====================
+  // NOUVELLES RECETTES (200-229)
+  // =====================
+  {
+    id: 200,
+    nom: "Croissants au beurre",
+    categorie: "petit-dejeuner",
+    budget: 2,
+    tempsPreparation: 25,
+    tags: ["rapide", "leger"],
+    ingredients: [
+      { nom: "Croissants", quantite: 1, unite: "pièce", rayon: "boulangerie" },
+      { nom: "Beurre", quantite: 10, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Café", quantite: 1, unite: "tasse", rayon: "boissons" }
+    ],
+    etapes: []
+  },
+  {
+    id: 201,
+    nom: "Œufs brouillés à la française",
+    categorie: "petit-dejeuner",
+    budget: 1,
+    tempsPreparation: 10,
+    tags: ["rapide", "proteine"],
+    ingredients: [
+      { nom: "Oeufs", quantite: 3, unite: "pièces", rayon: "epicerie" },
+      { nom: "Beurre", quantite: 10, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Ciboulette", quantite: 1, unite: "cc", rayon: "fruits-legumes" }
+    ],
+    etapes: []
+  },
+  {
+    id: 203,
+    nom: "Quiche Lorraine",
+    categorie: "dejeuner",
+    budget: 2,
+    tempsPreparation: 50,
+    tags: ["copieux", "proteine"],
+    ingredients: [
+      { nom: "Pâte brisée", quantite: 1, unite: "disque", rayon: "epicerie" },
+      { nom: "Lardons", quantite: 150, unite: "g", rayon: "viandes" },
+      { nom: "Oeufs", quantite: 3, unite: "pièces", rayon: "epicerie" },
+      { nom: "Crème liquide", quantite: 20, unite: "cl", rayon: "produits-laitiers" },
+      { nom: "Fromage râpé", quantite: 80, unite: "g", rayon: "produits-laitiers" }
+    ],
+    etapes: []
+  },
+  {
+    id: 204,
+    nom: "Blanquette de veau",
+    categorie: "diner",
+    budget: 3,
+    tempsPreparation: 120,
+    tags: ["copieux", "proteine"],
+    ingredients: [
+      { nom: "Veau", quantite: 600, unite: "g", rayon: "viandes" },
+      { nom: "Carottes", quantite: 3, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Oignons", quantite: 2, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Crème fraîche", quantite: 15, unite: "cl", rayon: "produits-laitiers" },
+      { nom: "Bouillon cube", quantite: 1, unite: "pièce", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 205,
+    nom: "Ratatouille provençale",
+    categorie: "dejeuner",
+    budget: 1,
+    tempsPreparation: 60,
+    tags: ["vegetarien", "leger"],
+    ingredients: [
+      { nom: "Courgettes", quantite: 3, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Aubergines", quantite: 2, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Poivrons", quantite: 2, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Tomates", quantite: 6, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Huile d'olive", quantite: 4, unite: "cs", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 206,
+    nom: "Crêpes sucrées",
+    categorie: "dessert",
+    budget: 1,
+    tempsPreparation: 30,
+    tags: ["sucre", "rapide"],
+    ingredients: [
+      { nom: "Farine", quantite: 250, unite: "g", rayon: "epicerie" },
+      { nom: "Lait", quantite: 50, unite: "cl", rayon: "produits-laitiers" },
+      { nom: "Oeufs", quantite: 3, unite: "pièces", rayon: "epicerie" },
+      { nom: "Sucre", quantite: 2, unite: "cs", rayon: "epicerie" },
+      { nom: "Beurre", quantite: 20, unite: "g", rayon: "produits-laitiers" }
+    ],
+    etapes: []
+  },
+  {
+    id: 207,
+    nom: "Tarte Tatin",
+    categorie: "dessert",
+    budget: 2,
+    tempsPreparation: 70,
+    tags: ["sucre", "copieux"],
+    ingredients: [
+      { nom: "Pommes", quantite: 1, unite: "kg", rayon: "fruits-legumes" },
+      { nom: "Sucre", quantite: 150, unite: "g", rayon: "epicerie" },
+      { nom: "Pâte feuilletée", quantite: 1, unite: "rouleau", rayon: "epicerie" },
+      { nom: "Beurre", quantite: 80, unite: "g", rayon: "produits-laitiers" }
+    ],
+    etapes: []
+  },
+  {
+    id: 208,
+    nom: "Soupe à l'oignon gratinée",
+    categorie: "diner",
+    budget: 2,
+    tempsPreparation: 60,
+    tags: ["leger", "rapide"],
+    ingredients: [
+      { nom: "Oignons", quantite: 800, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Pain", quantite: 4, unite: "tranches", rayon: "boulangerie" },
+      { nom: "Gruyère", quantite: 150, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Bouillon cube", quantite: 2, unite: "pièces", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 209,
+    nom: "Moules marinières",
+    categorie: "dejeuner",
+    budget: 2,
+    tempsPreparation: 25,
+    tags: ["proteine", "rapide"],
+    ingredients: [
+      { nom: "Moules", quantite: 2, unite: "kg", rayon: "poissonnerie" },
+      { nom: "Echalotes", quantite: 3, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Beurre", quantite: 30, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Vin blanc", quantite: 20, unite: "cl", rayon: "boissons" }
+    ],
+    etapes: []
+  },
+  {
+    id: 210,
+    nom: "Steak frites",
+    categorie: "diner",
+    budget: 2,
+    tempsPreparation: 30,
+    tags: ["proteine", "copieux"],
+    ingredients: [
+      { nom: "Steak haché", quantite: 2, unite: "pièces", rayon: "viandes" },
+      { nom: "Frites surgelées", quantite: 600, unite: "g", rayon: "surgeles" },
+      { nom: "Huile", quantite: 2, unite: "cs", rayon: "epicerie" },
+      { nom: "Persil", quantite: 1, unite: "cc", rayon: "fruits-legumes" }
+    ],
+    etapes: []
+  },
+  {
+    id: 211,
+    nom: "Clafoutis aux cerises",
+    categorie: "dessert",
+    budget: 2,
+    tempsPreparation: 55,
+    tags: ["sucre", "vegetarien"],
+    ingredients: [
+      { nom: "Cerises", quantite: 500, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Farine", quantite: 100, unite: "g", rayon: "epicerie" },
+      { nom: "Lait", quantite: 25, unite: "cl", rayon: "produits-laitiers" },
+      { nom: "Oeufs", quantite: 4, unite: "pièces", rayon: "epicerie" },
+      { nom: "Sucre", quantite: 80, unite: "g", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 212,
+    nom: "Coq au vin",
+    categorie: "diner",
+    budget: 3,
+    tempsPreparation: 150,
+    tags: ["copieux", "proteine"],
+    ingredients: [
+      { nom: "Poulet entier", quantite: 1.5, unite: "kg", rayon: "viandes" },
+      { nom: "Vin rouge", quantite: 75, unite: "cl", rayon: "boissons" },
+      { nom: "Carottes", quantite: 4, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Champignons de Paris", quantite: 300, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Lardons", quantite: 100, unite: "g", rayon: "viandes" }
+    ],
+    etapes: []
+  },
+  {
+    id: 213,
+    nom: "Salade niçoise",
+    categorie: "dejeuner",
+    budget: 2,
+    tempsPreparation: 20,
+    tags: ["leger", "proteine"],
+    ingredients: [
+      { nom: "Thon en boîte", quantite: 1, unite: "boîte", rayon: "epicerie" },
+      { nom: "Tomates", quantite: 4, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Oeufs", quantite: 4, unite: "pièces", rayon: "epicerie" },
+      { nom: "Olives noires", quantite: 50, unite: "g", rayon: "epicerie" },
+      { nom: "Huile d'olive", quantite: 3, unite: "cs", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 214,
+    nom: "Tarte au citron meringuée",
+    categorie: "dessert",
+    budget: 3,
+    tempsPreparation: 80,
+    tags: ["sucre"],
+    ingredients: [
+      { nom: "Farine", quantite: 200, unite: "g", rayon: "epicerie" },
+      { nom: "Beurre", quantite: 120, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Sucre", quantite: 250, unite: "g", rayon: "epicerie" },
+      { nom: "Citrons", quantite: 4, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Oeufs", quantite: 5, unite: "pièces", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 215,
+    nom: "Gratin dauphinois",
+    categorie: "diner",
+    budget: 2,
+    tempsPreparation: 90,
+    tags: ["copieux", "vegetarien"],
+    ingredients: [
+      { nom: "Pommes de terre", quantite: 1.2, unite: "kg", rayon: "fruits-legumes" },
+      { nom: "Crème liquide", quantite: 40, unite: "cl", rayon: "produits-laitiers" },
+      { nom: "Lait", quantite: 30, unite: "cl", rayon: "produits-laitiers" },
+      { nom: "Ail", quantite: 2, unite: "gousses", rayon: "fruits-legumes" }
+    ],
+    etapes: []
+  },
+  {
+    id: 216,
+    nom: "Cassoulet toulousain",
+    categorie: "diner",
+    budget: 3,
+    tempsPreparation: 240,
+    tags: ["copieux", "proteine"],
+    ingredients: [
+      { nom: "Saucisse de Toulouse", quantite: 4, unite: "pièces", rayon: "viandes" },
+      { nom: "Confit de canard", quantite: 4, unite: "cuisses", rayon: "viandes" },
+      { nom: "Haricots blancs", quantite: 800, unite: "g", rayon: "epicerie" },
+      { nom: "Tomates", quantite: 4, unite: "pièces", rayon: "fruits-legumes" }
+    ],
+    etapes: []
+  },
+  {
+    id: 217,
+    nom: "Madeleines de Commercy",
+    categorie: "dessert",
+    budget: 1,
+    tempsPreparation: 35,
+    tags: ["sucre", "rapide"],
+    ingredients: [
+      { nom: "Farine", quantite: 150, unite: "g", rayon: "epicerie" },
+      { nom: "Beurre", quantite: 120, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Sucre", quantite: 130, unite: "g", rayon: "epicerie" },
+      { nom: "Oeufs", quantite: 3, unite: "pièces", rayon: "epicerie" },
+      { nom: "Citron", quantite: 1, unite: "pièce", rayon: "fruits-legumes" }
+    ],
+    etapes: []
+  },
+  {
+    id: 218,
+    nom: "Boeuf bourguignon",
+    categorie: "diner",
+    budget: 3,
+    tempsPreparation: 180,
+    tags: ["copieux", "proteine"],
+    ingredients: [
+      { nom: "Boeuf à braiser", quantite: 1, unite: "kg", rayon: "viandes" },
+      { nom: "Vin rouge", quantite: 75, unite: "cl", rayon: "boissons" },
+      { nom: "Carottes", quantite: 4, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Oignons", quantite: 200, unite: "g", rayon: "fruits-legumes" },
+      { nom: "Bouquet garni", quantite: 1, unite: "pièce", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 220,
+    nom: "Pasta carbonara",
+    categorie: "dejeuner",
+    budget: 2,
+    tempsPreparation: 20,
+    tags: ["rapide", "proteine"],
+    ingredients: [
+      { nom: "Spaghetti", quantite: 300, unite: "g", rayon: "epicerie" },
+      { nom: "Lardons", quantite: 150, unite: "g", rayon: "viandes" },
+      { nom: "Oeufs", quantite: 3, unite: "pièces", rayon: "epicerie" },
+      { nom: "Parmesan", quantite: 80, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Poivre", quantite: 1, unite: "cc", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 221,
+    nom: "Pizza margherita maison",
+    categorie: "diner",
+    budget: 2,
+    tempsPreparation: 40,
+    tags: ["copieux", "vegetarien"],
+    ingredients: [
+      { nom: "Pâte à pizza", quantite: 1, unite: "disque", rayon: "epicerie" },
+      { nom: "Sauce tomate", quantite: 200, unite: "g", rayon: "epicerie" },
+      { nom: "Mozzarella", quantite: 200, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Basilic", quantite: 10, unite: "feuilles", rayon: "fruits-legumes" },
+      { nom: "Huile d'olive", quantite: 2, unite: "cs", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 222,
+    nom: "Tacos revisités",
+    categorie: "dejeuner",
+    budget: 2,
+    tempsPreparation: 25,
+    tags: ["rapide", "proteine"],
+    ingredients: [
+      { nom: "Viande hachée", quantite: 400, unite: "g", rayon: "viandes" },
+      { nom: "Tomates", quantite: 3, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Tortillas", quantite: 8, unite: "pièces", rayon: "epicerie" },
+      { nom: "Fromage râpé", quantite: 150, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Épices", quantite: 1, unite: "sachet", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 223,
+    nom: "Makis californiens",
+    categorie: "dejeuner",
+    budget: 2,
+    tempsPreparation: 35,
+    tags: ["leger", "proteine"],
+    ingredients: [
+      { nom: "Saumon fumé", quantite: 200, unite: "g", rayon: "poissonnerie" },
+      { nom: "Riz à sushi", quantite: 300, unite: "g", rayon: "epicerie" },
+      { nom: "Avocat", quantite: 2, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Feuilles de nori", quantite: 5, unite: "pièces", rayon: "epicerie" },
+      { nom: "Sauce soja", quantite: 3, unite: "cs", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 224,
+    nom: "Curry de poulet coco",
+    categorie: "diner",
+    budget: 2,
+    tempsPreparation: 45,
+    tags: ["copieux", "proteine"],
+    ingredients: [
+      { nom: "Blanc de poulet", quantite: 600, unite: "g", rayon: "viandes" },
+      { nom: "Lait de coco", quantite: 40, unite: "cl", rayon: "epicerie" },
+      { nom: "Pâte de curry", quantite: 3, unite: "cs", rayon: "epicerie" },
+      { nom: "Oignons", quantite: 2, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Coriandre fraîche", quantite: 1, unite: "botte", rayon: "fruits-legumes" }
+    ],
+    etapes: []
+  },
+  {
+    id: 225,
+    nom: "Pad thaï aux crevettes",
+    categorie: "dejeuner",
+    budget: 2,
+    tempsPreparation: 30,
+    tags: ["rapide", "leger"],
+    ingredients: [
+      { nom: "Nouilles de riz", quantite: 250, unite: "g", rayon: "epicerie" },
+      { nom: "Crevettes", quantite: 200, unite: "g", rayon: "poissonnerie" },
+      { nom: "Carottes", quantite: 2, unite: "pièces", rayon: "fruits-legumes" },
+      { nom: "Sauce soja", quantite: 4, unite: "cs", rayon: "epicerie" },
+      { nom: "Cacahuètes", quantite: 50, unite: "g", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 226,
+    nom: "Tiramisu maison",
+    categorie: "dessert",
+    budget: 2,
+    tempsPreparation: 20,
+    tags: ["sucre"],
+    ingredients: [
+      { nom: "Mascarpone", quantite: 500, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Biscuits à la cuillère", quantite: 300, unite: "g", rayon: "epicerie" },
+      { nom: "Sucre", quantite: 120, unite: "g", rayon: "epicerie" },
+      { nom: "Café", quantite: 30, unite: "cl", rayon: "boissons" },
+      { nom: "Crème liquide", quantite: 20, unite: "cl", rayon: "produits-laitiers" }
+    ],
+    etapes: []
+  },
+  {
+    id: 227,
+    nom: "Brownies aux noix",
+    categorie: "dessert",
+    budget: 2,
+    tempsPreparation: 40,
+    tags: ["sucre", "copieux"],
+    ingredients: [
+      { nom: "Chocolat noir", quantite: 200, unite: "g", rayon: "epicerie" },
+      { nom: "Beurre", quantite: 180, unite: "g", rayon: "produits-laitiers" },
+      { nom: "Sucre", quantite: 200, unite: "g", rayon: "epicerie" },
+      { nom: "Farine", quantite: 100, unite: "g", rayon: "epicerie" },
+      { nom: "Noix", quantite: 80, unite: "g", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 228,
+    nom: "Falafels maison",
+    categorie: "dejeuner",
+    budget: 1,
+    tempsPreparation: 40,
+    tags: ["vegetarien", "leger"],
+    ingredients: [
+      { nom: "Pois chiches", quantite: 400, unite: "g", rayon: "epicerie" },
+      { nom: "Oignon", quantite: 1, unite: "pièce", rayon: "fruits-legumes" },
+      { nom: "Cumin", quantite: 2, unite: "cc", rayon: "epicerie" },
+      { nom: "Coriandre", quantite: 1, unite: "cc", rayon: "epicerie" },
+      { nom: "Huile", quantite: 50, unite: "cl", rayon: "epicerie" }
+    ],
+    etapes: []
+  },
+  {
+    id: 229,
+    nom: "Bowl poke saumon",
+    categorie: "dejeuner",
+    budget: 3,
+    tempsPreparation: 15,
+    tags: ["leger", "proteine"],
+    ingredients: [
+      { nom: "Saumon frais", quantite: 200, unite: "g", rayon: "poissonnerie" },
+      { nom: "Riz à sushi", quantite: 200, unite: "g", rayon: "epicerie" },
+      { nom: "Avocat", quantite: 1, unite: "pièce", rayon: "fruits-legumes" },
+      { nom: "Concombre", quantite: 1, unite: "pièce", rayon: "fruits-legumes" },
+      { nom: "Sauce soja", quantite: 3, unite: "cs", rayon: "epicerie" }
+    ],
+    etapes: []
   }
 
 ];
