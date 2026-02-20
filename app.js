@@ -996,32 +996,49 @@ function exportToObsidian() {
 
   md += `---\n_Généré le ${displayDate} par Menu Planner_\n`;
 
-  const fileName = `Liste de courses ${dateStr}.md`;
+  const fileName = `Liste de courses ${dateStr}`;
   const blob = new Blob([md], { type: 'text/plain;charset=utf-8' });
-  const file = new File([blob], fileName, { type: 'text/plain' });
+  const file = new File([blob], `${fileName}.md`, { type: 'text/plain' });
 
-  if (navigator.share) {
-    navigator.share({ files: [file], title: fileName })
-      .catch(err => {
-        if (err.name === 'AbortError') return;
-        // Fallback si le partage de fichiers n'est pas supporté
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = fileName;
-        a.click();
-        URL.revokeObjectURL(url);
-        showToast('Export Obsidian téléchargé !');
-      });
-  } else {
+  function downloadFallback() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = fileName;
+    a.download = `${fileName}.md`;
     a.click();
     URL.revokeObjectURL(url);
     showToast('Export Obsidian téléchargé !');
   }
+
+  function shareFallback() {
+    if (navigator.share) {
+      navigator.share({ files: [file], title: `${fileName}.md` })
+        .catch(err => { if (err.name !== 'AbortError') downloadFallback(); });
+    } else {
+      downloadFallback();
+    }
+  }
+
+  // Essaie d'ouvrir Obsidian directement via son URI scheme
+  const obsidianUri = `obsidian://new?name=${encodeURIComponent(fileName)}&content=${encodeURIComponent(md)}`;
+
+  let obsidianOpened = false;
+  const onVisibilityChange = () => {
+    if (document.hidden) obsidianOpened = true;
+    document.removeEventListener('visibilitychange', onVisibilityChange);
+  };
+  document.addEventListener('visibilitychange', onVisibilityChange);
+
+  window.location.href = obsidianUri;
+  showToast('Ouverture dans Obsidian…');
+
+  setTimeout(() => {
+    document.removeEventListener('visibilitychange', onVisibilityChange);
+    if (!obsidianOpened) {
+      // Obsidian non installé → feuille de partage ou téléchargement
+      shareFallback();
+    }
+  }, 1500);
 }
 
 function copyList() {
