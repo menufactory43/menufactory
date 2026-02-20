@@ -946,6 +946,67 @@ function printList() {
   window.print();
 }
 
+function exportToObsidian() {
+  const today = new Date();
+  const dateStr = today.toISOString().split('T')[0];
+  const displayDate = today.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+  const byRayon = {};
+  let totalPrice = 0;
+
+  Object.values(state.shoppingList).forEach(item => {
+    if (!byRayon[item.rayon]) byRayon[item.rayon] = [];
+    const prixInfo = PRIX_INGREDIENTS[item.nom];
+    let itemPrice = prixInfo
+      ? item.quantite * (prixInfo.prixBase / prixInfo.qteParUnite)
+      : 0.50;
+    item.prix = itemPrice;
+    totalPrice += itemPrice;
+    byRayon[item.rayon].push(item);
+  });
+
+  const totalRepas = state.generatedMenu.reduce((acc, day) => acc + day.repas.length, 0);
+
+  let md = `# Liste de courses — ${displayDate}\n\n`;
+  md += `> **${state.nbPersonnes} personnes** · ${state.nbJours} jours · ${totalRepas} repas · Budget estimé : **${totalPrice.toFixed(2)} €**\n\n`;
+
+  // Menu résumé
+  md += `## Menu de la semaine\n\n`;
+  state.generatedMenu.forEach(day => {
+    md += `### ${day.jour}\n`;
+    day.repas.forEach(meal => {
+      md += `- **${meal.type}** : ${meal.recipe.nom}\n`;
+    });
+    md += '\n';
+  });
+
+  // Liste de courses par rayon
+  md += `## Courses\n\n`;
+  const rayonOrder = ['fruits-legumes', 'viandes', 'poissonnerie', 'produits-laitiers', 'boulangerie', 'epicerie', 'boissons', 'surgeles'];
+  rayonOrder.forEach(rayonKey => {
+    if (!byRayon[rayonKey]) return;
+    const icon = RAYON_ICONS[rayonKey] || '📦';
+    const rayonTotal = byRayon[rayonKey].reduce((sum, item) => sum + (item.prix || 0), 0);
+    md += `### ${icon} ${RAYONS[rayonKey]} — ${rayonTotal.toFixed(2)} €\n\n`;
+    byRayon[rayonKey].forEach(item => {
+      md += `- [ ] **${item.nom}** : ${formatQuantity(item.quantite, item.unite)} _(${item.prix.toFixed(2)} €)_\n`;
+    });
+    md += '\n';
+  });
+
+  md += `---\n_Généré le ${displayDate} par Menu Planner_\n`;
+
+  // Télécharger le fichier
+  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Liste de courses ${dateStr}.md`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Export Obsidian téléchargé !');
+}
+
 function copyList() {
   let text = `LISTE DE COURSES\n`;
   text += `Pour ${state.nbPersonnes} personnes - ${state.nbJours} jours\n`;

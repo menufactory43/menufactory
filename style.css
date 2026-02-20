@@ -1539,6 +1539,24 @@ header h1 {
   border: none;
 }
 
+/* ========================================
+   Bouton Obsidian
+   ======================================== */
+.btn-obsidian {
+  background: #7C3AED;
+  color: white;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-obsidian:hover {
+  background: #5B21B6;
+  color: white;
+  border: none;
+}
+
 .bring-icon {
   background: white;
   color: #4CAF50;
@@ -1549,7 +1567,8 @@ header h1 {
 }
 
 @media print {
-  .btn-bring {
+  .btn-bring,
+  .btn-obsidian {
     display: none !important;
   }
 }
