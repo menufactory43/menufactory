@@ -996,15 +996,23 @@ function exportToObsidian() {
 
   md += `---\n_Généré le ${displayDate} par Menu Planner_\n`;
 
-  // Télécharger le fichier
+  const fileName = `Liste de courses ${dateStr}.md`;
   const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `Liste de courses ${dateStr}.md`;
-  a.click();
-  URL.revokeObjectURL(url);
-  showToast('Export Obsidian téléchargé !');
+  const file = new File([blob], fileName, { type: 'text/markdown' });
+
+  if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+    navigator.share({ files: [file], title: fileName })
+      .then(() => showToast('Fichier partagé !'))
+      .catch(err => { if (err.name !== 'AbortError') showToast('Erreur lors du partage'); });
+  } else {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Export Obsidian téléchargé !');
+  }
 }
 
 function copyList() {
